@@ -18,21 +18,21 @@ const products = [
     name: "Premium Rice Flour",
     description: "Finely milled rice flour for everyday cooking and light, crisp batters.",
     category: "Rice Flours",
-    image: "/images/product1.png",
+    image: "https://res.cloudinary.com/dkzvu1c4j/image/upload/v1754295766/steamed_pttupodi_1kg_gm6lpi.png",
   },
   {
     id: 2,
     name: "Idiyappam Rice Flour",
     description: "Smooth-texture rice flour ideal for soft, non-sticky idiyappam and puttu.",
     category: "Rice Flours",
-    image: "/images/product2.png",
+    image: "https://res.cloudinary.com/dkzvu1c4j/image/upload/v1754295725/Idiyappam_mockup_z1ejju.png",
   },
   {
     id: 3,
     name: "Instant Dosa Batter Mix",
     description: "Just add water for golden, lacy dosas—no soaking or grinding needed.",
     category: "Instant Batters",
-    image: "/images/product3.png",
+    image: "https://res.cloudinary.com/dkzvu1c4j/image/upload/v1756361607/IDLI_DOSA_BATTER_jt1fun.webp",
   },
 ];
 
@@ -138,7 +138,7 @@ export default function ProductsPage() {
   return (
     <>
     <ProductBanner/>
-    <div className="max-w-7xl mx-auto px-6 py-12 space-y-20">
+    <div className="max-w-7xl mx-auto px-4 space-y-20">
       {/* PRODUCTS */}
       <motion.section
         id="products"

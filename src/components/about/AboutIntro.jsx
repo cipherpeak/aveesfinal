@@ -5,7 +5,7 @@ import ourstorybannerMobile from "../../assets/ourstory/PHONE BANNER 07.webp";
 
 const AboutIntro = () => {
   return (
-    <section className="py-16 md:py-20 px-4 bg-background">
+    <section className="py-16 md:py-2 px-4 bg-background">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
           {/* Text Content - Left Side */}
