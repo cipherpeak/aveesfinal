@@ -28,32 +28,14 @@ function Header() {
     },
     {
       name: "Our Businesses",
-      // dropdown: [
-      //   { 
-      //     name: "Retail", 
-      //     link: "#",
-      //     image: "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      //     description: "Explore our retail operations and stores"
-      //   },
-      //   { 
-      //     name: "Manufacturing", 
-      //     link: "#",
-      //     image: "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      //     description: "Our manufacturing facilities and capabilities"
-      //   },
-      //   { 
-      //     name: "Technology", 
-      //     link: "#",
-      //     image: "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      //     description: "Innovative tech solutions we provide"
-      //   },
-      //   { 
-      //     name: "Healthcare", 
-      //     link: "#",
-      //     image: "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      //     description: "Our healthcare services and facilities"
-      //   },
-      // ],
+      dropdown: [
+        { 
+          name: "Puttu House", 
+          link: "/puttu-house", 
+          image: "https://res.cloudinary.com/dkzvu1c4j/image/upload/v1754295503/ChatGPT_Image_Aug_1_2025_08_01_45_PM_i2vlls.png",
+          description: "Explore our retail operations and stores"
+        },
+      ],
     },
     {
       name: "Opportunities",

@@ -5,6 +5,7 @@ import ProductGrid from "./ProductGrid";
 import { map } from "framer-motion/client";
 import ProductFeatures from "./ProductFeatures";
 import ProductFaq from "./ProductFaq";
+import { motion } from "framer-motion";
 
 // Categories
 const categories = ["All", "Rice Flours", "Instant Batters", "Ready-to-Cook", "Snacks"];
@@ -69,32 +70,119 @@ const faqs = [
 export default function ProductsPage() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [openFAQ, setOpenFAQ] = useState(null);
+  const [isVisible, setIsVisible] = useState({
+    products: false,
+    features: false,
+    faq: false,
+    cta: false
+  });
 
-
+  // Animation variants for left-to-right entrance and exit
+  const sectionVariants = {
+    hidden: { 
+      opacity: 0, 
+      x: -100,
+      transition: { duration: 0.5 }
+    },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      transition: { duration: 0.5 }
+    },
+    exit: { 
+      opacity: 0, 
+      x: 100,
+      transition: { duration: 0.5 }
+    }
+  };
 
   const filteredProducts =
     activeCategory === "All"
       ? products
       : products.filter((p) => p.category === activeCategory);
 
-      
+  // Intersection Observer to detect when sections are in view
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.3
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setIsVisible(prev => ({ ...prev, [entry.target.id]: true }));
+        } else {
+          setIsVisible(prev => ({ ...prev, [entry.target.id]: false }));
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    
+    // Observe each section
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+
+    return () => {
+      sections.forEach(section => {
+        observer.unobserve(section);
+      });
+    };
+  }, []);
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-12 space-y-20">
       {/* PRODUCTS */}
-       <ProductGrid categories={categories} activeCategory={activeCategory} filteredProducts={filteredProducts} setActiveCategory={setActiveCategory}/>
+      <motion.section
+        id="products"
+        variants={sectionVariants}
+        initial="hidden"
+        animate={isVisible.products ? "visible" : "exit"}
+      >
+        <ProductGrid 
+          categories={categories} 
+          activeCategory={activeCategory} 
+          filteredProducts={filteredProducts} 
+          setActiveCategory={setActiveCategory}
+        />
+      </motion.section>
 
       {/* FEATURES */}
-       <ProductFeatures features={features}/>
+      <motion.section
+        id="features"
+        variants={sectionVariants}
+        initial="hidden"
+        animate={isVisible.features ? "visible" : "exit"}
+      >
+        <ProductFeatures features={features}/>
+      </motion.section>
 
       {/* FAQ */}
-       <ProductFaq faqs={faqs} ChevronDown={ChevronDown} openFAQ={openFAQ} setOpenFAQ={setOpenFAQ}/>
+      <motion.section
+        id="faq"
+        variants={sectionVariants}
+        initial="hidden"
+        animate={isVisible.faq ? "visible" : "exit"}
+      >
+        <ProductFaq 
+          faqs={faqs} 
+          ChevronDown={ChevronDown} 
+          openFAQ={openFAQ} 
+          setOpenFAQ={setOpenFAQ}
+        />
+      </motion.section>
 
       {/* CTA */}
-      <section
+      <motion.section
         id="cta"
-        className="border rounded-2xl p-6 flex flex-col sm:flex-row justify-between items-center gap-4 bg-gray-50 transition-all duration-1000 opacity-100 translate-y-0"
-
+        variants={sectionVariants}
+        initial="hidden"
+        animate={isVisible.cta ? "visible" : "exit"}
+        className="border rounded-2xl p-6 flex flex-col sm:flex-row justify-between items-center gap-4 bg-gray-50"
       >
         <div>
           <h3 className="font-semibold text-lg">Interested in Retail or Distribution?</h3>
@@ -110,7 +198,7 @@ export default function ProductsPage() {
             Enquire for Distribution
           </button>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 }
