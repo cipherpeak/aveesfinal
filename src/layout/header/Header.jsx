@@ -7,11 +7,9 @@ import { GiShoppingBag } from "react-icons/gi";
 import { FiMenu, FiX } from "react-icons/fi";
 import ourstorybannerMobile from "../../assets/ourstory/PHONE BANNER 07.webp";
 
-
-
 function Header() {
   const [activeDropdown, setActiveDropdown] = useState(null);
-  // const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
     {
@@ -25,7 +23,6 @@ function Header() {
     {
       name: "About Us",
       link: "/about",
-
     },
     {
       name: "Our Businesses",
@@ -36,53 +33,19 @@ function Header() {
           image: ourstorybannerMobile,
           description: "Explore our retail operations and stores"
         },
+        { 
+          name: "Avees Resort", 
+          link: "/avees-resort", 
+          image: "https://res.cloudinary.com/dkzvu1c4j/image/upload/v1754295582/resort_eibvny.webp",
+          description: "Explore our resorts"
+        },
       ],
     },
     {
       name: "Opportunities",
-      // dropdown: [
-      //   { 
-      //     name: "Investments", 
-      //     link: "#",
-      //     image: "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      //     description: "Investment opportunities with us"
-      //   },
-      //   { 
-      //     name: "Partnerships", 
-      //     link: "#",
-      //     image: "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      //     description: "Strategic partnership options"
-      //   },
-      //   { 
-      //     name: "Franchising", 
-      //     link: "#",
-      //     image: "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      //     description: "Franchise our successful models"
-      //   },
-      //   { 
-      //     name: "Joint Ventures", 
-      //     link: "#",
-      //     image: "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      //     description: "Collaborate through joint ventures"
-      //   },
-      // ],
     },
     {
       name: "Gallery",
-      // dropdown: [
-      //   { 
-      //     name: "Photos", 
-      //     link: "#",
-      //     image: "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      //     description: "Browse our photo collections"
-      //   },
-      //   { 
-      //     name: "Videos", 
-      //     link: "#",
-      //     image: "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      //     description: "Watch our corporate videos"
-      //   },
-      // ],
     },
   ];
 
@@ -130,18 +93,35 @@ function Header() {
     }
   };
 
+  const mobileMenuVariants = {
+    hidden: { 
+      opacity: 0,
+      height: 0,
+      transition: { 
+        duration: 0.3
+      }
+    },
+    visible: { 
+      opacity: 1,
+      height: "auto",
+      transition: { 
+        duration: 0.3
+      }
+    }
+  };
+
+  // Function to handle closing the mobile menu when a link is clicked
+  const handleLinkClick = () => {
+    setMobileMenuOpen(false);
+    setActiveDropdown(null);
+  };
+
   return (
     <header className="bg-white w-full sticky top-0 z-50 shadow-sm">
       {/* Top Bar */}
       <div className="flex items-center justify-between max-w-7xl mx-auto px-4 py-3">
-        {/* Logo and Mobile Menu Button */}
-        <div className="flex items-center gap-4 ">
-          <button 
-            className="md:hidden text-gray-700"
-            // onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {/* {mobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />} */}
-          </button>
+        {/* Logo */}
+        <div className="flex items-center">
           <img
             src={logo}
             alt="Avees Logo"
@@ -154,7 +134,8 @@ function Header() {
           <PlaceholdersAndVanishInputDemo />
         </div>
 
-        <div className="relative cursor-pointer ">
+        {/* Right side icons - Mobile menu and shopping cart */}
+        <div className="flex items-center gap-4">
           <a 
             href="https://www.amazon.in/stores/ArayacherrilVarkeySonsPrivateLimited/page/845DC96C-907A-4AD1-AC9D-AA2AF5129460?is_byline_deeplink=true&deeplink=CB166B1D-3A54-48AA-B41E-03CBD177798D&redirect_store_id=845DC96C-907A-4AD1-AC9D-AA2AF5129460&lp_asin=B09R7WRRT2&ref_=ast_bln&store_ref=bl_ast_dp_brandLogo_sto" 
             target="_blank" 
@@ -164,6 +145,15 @@ function Header() {
             <GiShoppingBag className="text-red-500 text-xl" />
             <span className="hidden sm:inline">Order Now</span>
           </a>
+          
+          {/* Mobile Menu Button - Now on the right side */}
+          <button 
+            className="md:hidden text-gray-700"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle mobile menu"
+          >
+            {mobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          </button>
         </div>
       </div>
 
@@ -224,7 +214,7 @@ function Header() {
                                 
                                 {/* Text content */}
                                 <div className="absolute inset-0 flex flex-col justify-end p-4 text-white">
-                                  <h3 className="font-bold text-lg mb-1  transition-colors text-red-600">
+                                  <h3 className="font-bold text-lg mb-1 transition-colors text-red-600">
                                     {subItem.name}
                                   </h3>
                                   <p className="text-sm opacity-90 group-hover:opacity-100 transition-opacity">
@@ -246,14 +236,14 @@ function Header() {
       </div>
 
       {/* Mobile Navigation */}
-      {/* <AnimatePresence>
+      <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div 
             className="md:hidden bg-white w-full border-t"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            variants={mobileMenuVariants}
           >
             <div className="px-4 py-2">
               <PlaceholdersAndVanishInputDemo />
@@ -266,7 +256,7 @@ function Header() {
                       <a 
                         href={item.link} 
                         className="block px-4 py-3 hover:text-red-600 transition-colors"
-                        onClick={() => setMobileMenuOpen(false)}
+                        onClick={handleLinkClick}
                       >
                         {item.name}
                       </a>
@@ -285,7 +275,7 @@ function Header() {
                         </button>
                         
                         <AnimatePresence>
-                          {activeDropdown === index && (
+                          {activeDropdown === index && item.dropdown && (
                             <motion.div
                               className="overflow-hidden"
                               initial="hidden"
@@ -303,7 +293,7 @@ function Header() {
                                     <a
                                       href={subItem.link}
                                       className="flex items-center gap-4 px-4 py-3 text-sm"
-                                      onClick={() => setMobileMenuOpen(false)}
+                                      onClick={handleLinkClick}
                                     >
                                       <div className="flex-1">
                                         <h3 className="font-medium text-gray-900">
@@ -335,7 +325,7 @@ function Header() {
             </nav>
           </motion.div>
         )}
-      </AnimatePresence> */}
+      </AnimatePresence>
     </header>
   );
 }

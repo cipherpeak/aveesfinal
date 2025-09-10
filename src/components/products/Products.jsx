@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { ChevronDown, Leaf, ShieldCheck, Wheat } from "lucide-react";
 import { GiCoconuts } from "react-icons/gi";
 import ProductGrid from "./ProductGrid";
-import { map } from "framer-motion/client";
 import ProductFeatures from "./ProductFeatures";
 import ProductFaq from "./ProductFaq";
 import { motion } from "framer-motion";
@@ -45,7 +44,7 @@ const features = [
   },
   {
     title: "Coconut-forward Nutrition",
-    description: "Naturally aromatic, wholesome, and delicious coconut-based recipes.",
+    description: "Naturally aromatic, wholesome and delicious coconut-based recipes.",
     icon: <GiCoconuts className="h-8 w-8 text-red-600" />,
   },
   {
@@ -71,30 +70,11 @@ const faqs = [
 export default function ProductsPage() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [openFAQ, setOpenFAQ] = useState(null);
-  const [isVisible, setIsVisible] = useState({
-    products: false,
-    features: false,
-    faq: false,
-    cta: false
-  });
-
-  // Animation variants for left-to-right entrance and exit
-  const sectionVariants = {
-    hidden: { 
-      opacity: 0, 
-      x: -100,
-      transition: { duration: 0.5 }
-    },
-    visible: { 
-      opacity: 1, 
-      x: 0,
-      transition: { duration: 0.5 }
-    },
-    exit: { 
-      opacity: 0, 
-      x: 100,
-      transition: { duration: 0.5 }
-    }
+  const sectionRefs = {
+    products: useRef(null),
+    features: useRef(null),
+    faq: useRef(null),
+    cta: useRef(null)
   };
 
   const filteredProducts =
@@ -102,115 +82,139 @@ export default function ProductsPage() {
       ? products
       : products.filter((p) => p.category === activeCategory);
 
-  // Intersection Observer to detect when sections are in view
+  // Animation variants for fade-in-up entrance only (no exit animation)
+  const sectionVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  // Use a single Intersection Observer for all sections
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: "0px",
-      threshold: 0.3
+      rootMargin: "-10% 0px -10% 0px", // Adjust trigger point
+      threshold: 0.1
     };
 
-    const observerCallback = (entries) => {
-      entries.forEach(entry => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          setIsVisible(prev => ({ ...prev, [entry.target.id]: true }));
-        } else {
-          setIsVisible(prev => ({ ...prev, [entry.target.id]: false }));
+          // Add a class to trigger the animation
+          entry.target.classList.add("animate-in");
         }
       });
-    };
+    }, observerOptions);
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-    
-    // Observe each section
-    const sections = document.querySelectorAll('section');
-    sections.forEach(section => {
-      observer.observe(section);
+    // Observe all section refs
+    Object.values(sectionRefs).forEach(ref => {
+      if (ref.current) {
+        observer.observe(ref.current);
+      }
     });
 
     return () => {
-      sections.forEach(section => {
-        observer.unobserve(section);
+      Object.values(sectionRefs).forEach(ref => {
+        if (ref.current) {
+          observer.unobserve(ref.current);
+        }
       });
     };
   }, []);
 
   return (
     <>
-    <ProductBanner/>
-    <div className="max-w-7xl mx-auto px-4 space-y-20">
-      {/* PRODUCTS */}
-      <motion.section
-        id="products"
-        variants={sectionVariants}
-        initial="hidden"
-        animate={isVisible.products ? "visible" : "exit"}
-      >
-        <ProductGrid 
-          categories={categories} 
-          activeCategory={activeCategory} 
-          filteredProducts={filteredProducts} 
-          setActiveCategory={setActiveCategory}
-        />
-      </motion.section>
+      <ProductBanner/>
+      <div className="max-w-7xl mx-auto px-4 space-y-20">
+        {/* PRODUCTS */}
+        <motion.section
+          id="products"
+          ref={sectionRefs.products}
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+        >
+          <ProductGrid 
+            categories={categories} 
+            activeCategory={activeCategory} 
+            filteredProducts={filteredProducts} 
+            setActiveCategory={setActiveCategory}
+          />
+        </motion.section>
 
-      {/* FEATURES */}
-      <motion.section
-        id="features"
-        variants={sectionVariants}
-        initial="hidden"
-        animate={isVisible.features ? "visible" : "exit"}
-      >
-        <ProductFeatures features={features}/>
-      </motion.section>
+        {/* FEATURES */}
+        <motion.section
+          id="features"
+          ref={sectionRefs.features}
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+        >
+          <ProductFeatures features={features}/>
+        </motion.section>
 
-      {/* FAQ */}
-      <motion.section
-        id="faq"
-        variants={sectionVariants}
-        initial="hidden"
-        animate={isVisible.faq ? "visible" : "exit"}
-      >
-        <ProductFaq 
-          faqs={faqs} 
-          ChevronDown={ChevronDown} 
-          openFAQ={openFAQ} 
-          setOpenFAQ={setOpenFAQ}
-        />
-      </motion.section>
+        {/* FAQ */}
+        <motion.section
+          id="faq"
+          ref={sectionRefs.faq}
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+        >
+          <ProductFaq 
+            faqs={faqs} 
+            ChevronDown={ChevronDown} 
+            openFAQ={openFAQ} 
+            setOpenFAQ={setOpenFAQ}
+          />
+        </motion.section>
 
-{/* CTA */}
-<motion.section
-  id="cta"
-  variants={sectionVariants}
-  initial="hidden"
-  animate={isVisible.cta ? "visible" : "exit"}
-  className="border border-red-100 rounded-2xl p-6 flex flex-col sm:flex-row justify-between items-center gap-4 bg-gray-50"
->
-  <div>
-    <h3 className="font-semibold text-lg">Interested in Retail or Distribution?</h3>
-    <p className="text-gray-600 text-sm">
-      Partner with us to bring clean-label, coconut-forward products to more customers.
-    </p>
-  </div>
-  <div className="flex gap-3">
-    <motion.button 
-      whileHover={{ scale: 1.05 }}
-      transition={{ type: "spring", stiffness: 400, damping: 10 }}
-      className="bg-red-600 text-white px-4 py-2 rounded-md shadow-md hover:shadow-lg transition-shadow duration-300"
-    >
-      Enquire for Retail
-    </motion.button>
-    <motion.button 
-      whileHover={{ scale: 1.05 }}
-      transition={{ type: "spring", stiffness: 400, damping: 10 }}
-      className="bg-red-600 text-white px-4 py-2 rounded-md shadow-md hover:shadow-lg transition-shadow duration-300"
-    >
-      Enquire for Distribution
-    </motion.button>
-  </div>
-</motion.section>
-    </div>
+        {/* CTA */}
+        <motion.section
+          id="cta"
+          ref={sectionRefs.cta}
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+          className="border border-red-100 rounded-2xl p-6 flex flex-col sm:flex-row justify-between items-center gap-4 bg-gray-50"
+        >
+          <div>
+            <h3 className="font-semibold text-lg">Interested in Retail or Distribution?</h3>
+            <p className="text-gray-600 text-sm">
+              Partner with us to bring clean-label, coconut-forward products to more customers.
+            </p>
+          </div>
+          <div className="flex gap-3 flex-wrap justify-center">
+            <motion.button 
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              className="bg-red-600 text-white px-4 py-2 rounded-md shadow-md hover:shadow-lg transition-shadow duration-300"
+            >
+              Enquire for Retail
+            </motion.button>
+            <motion.button 
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              className="bg-red-600 text-white px-4 py-2 rounded-md shadow-md hover:shadow-lg transition-shadow duration-300"
+            >
+              Enquire for Distribution
+            </motion.button>
+          </div>
+        </motion.section>
+      </div>
     </>
   );
 }

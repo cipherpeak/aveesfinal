@@ -4,6 +4,7 @@ import HomeContents from "./pages/home/HomeContents";
 import Products from "./pages/products/ProductsPage";
 import AboutUs from "./pages/about/AboutContents";
 import PuttuHouse from "./pages/PuttuHouse/PuttuHouse";
+import Resort from "./pages/resort/Resort";
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
               <Route path="/products" element={<Products />} />
               <Route path="/about" element={<AboutUs />} />
               <Route path="/puttu-house" element={<PuttuHouse/>} />
+              <Route path="/avees-resort" element={<Resort/>} />
+              
             </Route>
           </Routes>
         </Router>
