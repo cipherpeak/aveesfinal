@@ -5,6 +5,7 @@ import { PlaceholdersAndVanishInputDemo } from "../../components/header/Search";
 import { motion, AnimatePresence } from "framer-motion";
 import { GiShoppingBag } from "react-icons/gi";
 import { FiMenu, FiX } from "react-icons/fi";
+import ourstorybannerMobile from "../../assets/ourstory/PHONE BANNER 07.webp";
 
 
 
@@ -32,7 +33,7 @@ function Header() {
         { 
           name: "Puttu House", 
           link: "/puttu-house", 
-          image: "https://res.cloudinary.com/dkzvu1c4j/image/upload/v1754295503/ChatGPT_Image_Aug_1_2025_08_01_45_PM_i2vlls.png",
+          image: ourstorybannerMobile,
           description: "Explore our retail operations and stores"
         },
       ],
@@ -216,14 +217,14 @@ function Header() {
                               >
                                 {/* Background image with dark overlay */}
                                 <div 
-                                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                                  className="absolute inset-0 bg-cover bg-bottom transition-transform duration-500 group-hover:scale-110"
                                   style={{ backgroundImage: `url(${subItem.image})` }}
                                 >
                                 </div>
                                 
                                 {/* Text content */}
                                 <div className="absolute inset-0 flex flex-col justify-end p-4 text-white">
-                                  <h3 className="font-bold text-lg mb-1 group-hover:text-red-300 transition-colors">
+                                  <h3 className="font-bold text-lg mb-1  transition-colors text-red-600">
                                     {subItem.name}
                                   </h3>
                                   <p className="text-sm opacity-90 group-hover:opacity-100 transition-opacity">

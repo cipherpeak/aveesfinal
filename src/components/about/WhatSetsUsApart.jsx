@@ -11,7 +11,7 @@ const WhatSetsUsApart = () => {
     {
       title: "Innovation",
       subtitle: "Tradition Meets Convenience",
-      description: "Our state-of-the-art R&D lab and clean-label products represent the perfect marriage of traditional Kerala recipes with modern Ready-to-Cook convenience for today's busy families.",
+      description: "Our state of the art R&D lab and clean label products represent the perfect marriage of traditional Kerala recipes with modern Ready to Cook convenience for today's busy families.",
       icon: <Lightbulb className="h-7 w-7 md:h-8 md:w-8" />
     },
     {
@@ -23,13 +23,13 @@ const WhatSetsUsApart = () => {
     {
       title: "Community",
       subtitle: "Growing Together",
-      description: "Through local employment opportunities, comprehensive youth training programs, and agri-entrepreneurship initiatives, we actively support and empower our farming community to thrive.",
+      description: "Through local employment opportunities, comprehensive youth training programs, and agri entrepreneurship initiatives, we actively support and empower our farming community to thrive.",
       icon: <Users className="h-7 w-7 md:h-8 md:w-8" />
     }
   ];
 
   return (
-    <section className="py-20 px-4 bg-background">
+    <section className="py-14 px-4 bg-background">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">

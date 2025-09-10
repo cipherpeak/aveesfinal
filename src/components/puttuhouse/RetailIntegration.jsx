@@ -2,15 +2,12 @@ import { ArrowRight } from "lucide-react";
 
 const RetailIntegration = () => {
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section className="py-16 md:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <span className="text-red-600 font-medium tracking-wide uppercase text-sm block mb-3">
-            Experience & Take Home
-          </span>
           <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
             Love the Taste?
-            <span className="block text-red-600">Bring it Home!</span>
+            <span className="block text-black">Bring it Home!</span>
           </h2>
         </div>
 
@@ -25,10 +22,13 @@ const RetailIntegration = () => {
                   className="w-full h-64 object-cover transition-transform duration-300 hover:scale-105"
                 />
               </div>
+              {/* Badge Heading */}
+              <div className="flex justify-center mb-4">
+                <div className="bg-red-600 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-md">
+                  Try - Puttu House
+                </div>
+              </div>
               <div className="text-center space-y-4">
-                <h3 className="text-xl font-semibold text-black">
-                  Try
-                </h3>
                 <p className="text-gray-700 leading-relaxed">
                   Experience the authentic flavors at our restaurant, where every meal is prepared with the same love and tradition as in our family kitchen.
                 </p>
@@ -41,15 +41,18 @@ const RetailIntegration = () => {
             <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
               <div className="relative mb-6 overflow-hidden rounded-lg">
                 <img
-                  src="https://res.cloudinary.com/dkzvu1c4j/image/upload/v1754294756/punnapra_ngpgmb.jpg"
+                  src="https://res.cloudinary.com/dkzvu1c4j/image/upload/v1754295129/Screenshot_2025-08-01_at_6.16.19_PM_rgg2q3.png"
                   alt="Avees retail products"
                   className="w-full h-64 object-cover transition-transform duration-300 hover:scale-105"
                 />
               </div>
+              {/* Badge Heading */}
+              <div className="flex justify-center mb-4">
+                <div className="bg-red-600 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-md">
+                  Buy - Retail Outlets
+                </div>
+              </div>
               <div className="text-center space-y-4">
-                <h3 className="text-xl font-semibold text-black">
-                  Buy
-                </h3>
                 <p className="text-gray-700 leading-relaxed">
                   Take home the same authentic flavors with our premium puttu flour, curry mixes, and chutney powders—available at all Avees retail outlets.
                 </p>
@@ -64,10 +67,13 @@ const RetailIntegration = () => {
             The same authentic taste that you loved in our restaurant is now available in our retail stores. 
             Recreate the magic in your own kitchen with our carefully crafted spice blends and ingredients.
           </p>
-          <button className="bg-red-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-red-700 transition-colors duration-200 inline-flex items-center gap-2 group">
-            Explore Retail Products
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
+          {/* Centered button container */}
+          <div className="flex justify-center">
+            <button className="group bg-red-600 flex items-center justify-center gap-2 text-white font-semibold py-3 px-8 rounded-md transition-all duration-300 hover:bg-red-700 shadow-md hover:shadow-lg">
+              Explore Our Retail Products
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
         </div>
       </div>
     </section>

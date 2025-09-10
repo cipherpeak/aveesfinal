@@ -109,7 +109,7 @@ const data = [
               <p className="text-white font-bold text-balance leading-relaxed
                            text-2xl sm:text-3xl md:text-2xl lg:text-3xl
                            drop-shadow-md">
-                Launch of Ready-to-Eat and Instant Mix products, transforming convenience.
+                Launch of Ready to Eat and Instant Mix products, transforming convenience.
               </p>
               <div className="h-1 w-16 bg-amber-400 mt-4 rounded-full transition-all duration-500 group-hover:w-24"></div>
             </div>

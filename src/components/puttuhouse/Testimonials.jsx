@@ -51,15 +51,13 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section className="py-16 md:py-7 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <span className="text-red-600 font-medium tracking-wide uppercase text-sm block mb-3">
-            Customer Stories
-          </span>
+
           <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
             Stories from
-            <span className="block text-red-600">Our Table</span>
+            <span className="block text-black">Our Table</span>
           </h2>
           <p className="text-gray-700 max-w-2xl mx-auto">
             Every review tells a story of tradition, taste, and memories made around our table.

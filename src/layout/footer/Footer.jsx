@@ -26,20 +26,19 @@ function Footer() {
             {/* Company Info Section */}
             <div className="lg:col-span-1">
               <div className="mb-6">
-                <div className="flex items-center mb-4">
+                <div className="flex flex-col gap-4 justify-center items-center mb-4">
                   <img
                     src={logo}
                     alt="Avees Logo"
                     className="h-11 md:h-16 w-auto rounded-full scale-150"
                   />
+                                <p className="text-black text-lg leading-relaxed mb-6 font-semibold">
+                Tradition. Taste. Trust
+              </p>
                 </div>
               </div>
 
-              <h3 className="text-lg font-semibold mb-4 text-black">Our company</h3>
 
-              <p className="text-black text-sm leading-relaxed mb-6">
-                Bringing the taste of Kuttanad to every kitchen.
-              </p>
             </div>
 
             {/* Shop Section */}

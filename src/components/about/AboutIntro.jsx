@@ -1,62 +1,56 @@
-
-import ourstorybanner from "../../assets/ourstory/1640X922.63 (02) (1).webp";
-import ourstorybannerMobile from "../../assets/ourstory/PHONE BANNER 07.webp"; 
-
+import ourstorybannerMobile from "../../assets/ourstory/PHONE BANNER 07.webp";
 
 const AboutIntro = () => {
   return (
-    <section className="py-16 md:py-2 px-4 bg-background">
+    <section className="py-6  px-4 bg-background mb-8">
       <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           {/* Text Content - Left Side */}
           <div className="w-full lg:w-1/2">
-            <div className="mb-10 lg:mb-12">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+            <div className="mb-8 lg:mb-10">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-5 tracking-wide">
                 Our Story
               </h2>
-              <div className="w-20 h-1 bg-heritage-green"></div>
+              <div className="w-16 h-0.5 bg-heritage-green"></div>
             </div>
-            
-            <div className="space-y-6 text-muted-foreground">
-              <p className="text-lg md:text-xl leading-relaxed">
-                From the enchanting backwaters of <span className="font-semibold text-heritage-green">Pulincunnoo, Kuttanad</span> — 
-                where rice fields flourish below sea level — began a remarkable journey of tradition, 
-                innovation, and unwavering commitment to authentic Kerala cuisine.
+
+            <div className="space-y-5 text-muted-foreground">
+              <p className="text-lg md:text-xl leading-relaxed font-light">
+                From the lush backwaters of Pulincunnoo, Kuttanad. Where rice
+                fields thrive below sea level. Avees began in 1994 with a simple
+                mission: to preserve the authentic taste of Kerala. Founded by
+                A.V. George, we started as a rice flour mill and gradually
+                expanded into high quality traditional food products such as
+                puttu podi, palappam podi, instant batters, and ready to cook
+                mixes.
               </p>
-              
-              <p className="text-lg md:text-xl leading-relaxed">
-                In <span className="font-semibold text-heritage-brown">1994</span>, visionary entrepreneur <span className="font-semibold text-heritage-brown">A.V. George</span> 
-                established our humble rice flour mill, driven by a passionate desire to preserve the 
-                traditional culinary authenticity of Kuttanad.
-              </p>
-              
-              <p className="text-lg md:text-xl leading-relaxed">
-                Today, we stand proud as custodians of Kerala's rich gastronomic heritage while 
-                embracing modern innovation to bring the authentic taste of Kuttanad to families 
-                across the world.
+              <p className="text-lg md:text-xl leading-relaxed font-light">
+                To bring our passion to life, we also launched Avees
+                Puttu House, where authentic Kerala dishes are prepared with
+                care and served in a warm, traditional setting. Today, we blend
+                tradition and innovation to deliver the genuine flavors of
+                Kuttanad to homes and tables across the world.
               </p>
             </div>
           </div>
-          
+
           {/* Image Container - Right Side */}
           <div className="w-full lg:w-1/2">
             <div className="relative">
-              <div className="aspect-square md:aspect-[4/5] lg:aspect-square rounded-2xl overflow-hidden shadow-lg">
-                <img 
-                  src={ourstorybannerMobile} 
-                  alt="Avees traditional Kuttanad cuisine"
-                  className="w-full h-full object-cover"
-                />
+              <div className="aspect-square md:aspect-[4/5] lg:aspect-square rounded-lg overflow-hidden shadow-md">
+                <picture>
+                  <source media="(min-width: 768px)" srcSet={ourstorybannerMobile} />
+                  <img
+                    src={ourstorybannerMobile}
+                    alt="Avees traditional Kuttanad cuisine"
+                    className="w-full h-full object-cover"
+                  />
+                </picture>
               </div>
-              
-              {/* Decorative element */}
-              <div className="absolute -z-10 top-4 right-4 w-full h-full rounded-2xl bg-heritage-green/20"></div>
+
+              {/* Subtle decorative element */}
+              <div className="absolute -z-10 top-3 -right-3 w-full h-full rounded-lg bg-heritage-green/10"></div>
             </div>
-            
-            {/* Image caption */}
-            <p className="text-sm text-muted-foreground italic mt-4 text-center lg:text-right">
-              Our beginnings in the beautiful backwaters of Kuttanad
-            </p>
           </div>
         </div>
       </div>

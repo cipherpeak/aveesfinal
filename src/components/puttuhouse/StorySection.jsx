@@ -1,19 +1,16 @@
 const StorySection = () => {
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section className="py-16 md:py-3 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
           {/* Content */}
           <div className="order-2 md:order-1">
             <div className="mb-2">
-              <span className="text-red-600 font-medium tracking-wide uppercase text-sm">
-                Our Story
-              </span>
             </div>
             
             <h2 className="text-4xl md:text-5xl font-bold text-black mb-6 leading-tight">
               More Than a Meal,
-              <span className="block text-red-600">It's a Memory</span>
+              <span className="block text-black">It's a Memory</span>
             </h2>
             
             <p className="text-gray-700 leading-relaxed mb-8">

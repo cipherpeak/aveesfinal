@@ -18,7 +18,7 @@ const FinalCTA = () => {
         
         <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
           A Table is Waiting.
-          <span className="block text-red-400">Your Story is Next.</span>
+          <span className="block text-white">Your Story is Next.</span>
         </h2>
         
         <p className="text-gray-200 mb-8 max-w-2xl mx-auto leading-relaxed">
@@ -26,7 +26,7 @@ const FinalCTA = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <button className="bg-red-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-red-700 transition-colors duration-200 inline-flex items-center group">
+          <button className="bg-red-600 text-white px-6 py-3 rounded-lg font-medium  transition-colors duration-200 inline-flex items-center group">
             <MapPin className="w-5 h-5 mr-2" />
             Find a Location
             <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />

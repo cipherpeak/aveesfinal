@@ -62,7 +62,7 @@ const HeroSection = () => {
       {/* Background Image */}
       <motion.div 
         className="absolute inset-0 lg:h-[50rem] h-[28rem] bg-cover bg-center bg-no-repeat rounded-3xl"
-        style={{ backgroundImage: `url("https://res.cloudinary.com/dkzvu1c4j/image/upload/v1754295503/ChatGPT_Image_Aug_1_2025_08_01_45_PM_i2vlls.png")` }}
+        style={{ backgroundImage: `url("https://res.cloudinary.com/dkzvu1c4j/image/upload/v1756376062/DSC02099_nk5car.jpg")` }}
         initial={{ opacity: 0, scale: 1.05 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
@@ -70,40 +70,48 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-warm-wood/40 rounded-3xl"></div>
       </motion.div>
       
-      {/* Content */}
-      <motion.div 
-        className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto"
-        variants={textVariants}
-      >
-        <motion.h1 
-          className="text-white font-bold tracking-tight text-balance leading-tight
-                     text-5xl sm:text-6xl lg:text-7xl
-                     drop-shadow-2xl mb-6"
-          variants={floatingVariants}
-          animate="animate"
+        <motion.div
+          className="absolute lg:mt-0 mt-28 inset-0 flex items-center justify-start text-left px-4 sm:px-6 lg:px-8"
+          variants={textVariants}
         >
-          <span className="bg-gradient-to-r from-white via-white to-gray-200 bg-clip-text text-transparent">
-            Where the Flour
-          </span>
-          <br />
-          <span className="bg-gradient-to-r from-red-600 via-white to-white bg-clip-text text-transparent">
-            Meets the Plate
-          </span>
-        </motion.h1>
-        
-        <motion.div 
-          className="mt-8"
-          variants={buttonVariants}
-        >
-          <motion.button 
-            className="px-6 sm:px-8 py-3 sm:py-4 bg-red-600/90 backdrop-blur-sm border border-white/20 rounded-full text-white font-medium text-sm sm:text-base hover:bg-red-700 transition-all duration-300 hover:scale-105 hover:shadow-xl"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Taste the Tradition
-          </motion.button>
+          <div className="max-w-4xl">
+            <motion.h1
+              className="text-white font-bold tracking-tight text-balance leading-tight
+                         text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl
+                         drop-shadow-2xl"
+              variants={floatingVariants}
+              animate="animate"
+            >
+              <span className="bg-gradient-to-r from-white via-white to-gray-200 bg-clip-text text-transparent">
+                Where the Flour
+              </span>
+              <br />
+              <span className="bg-gradient-to-r from-red-600 via-white to-white bg-clip-text text-transparent">
+                Meets the Plate
+              </span>
+            </motion.h1>
+
+            <motion.p
+              className="mt-4 sm:mt-6 hidden md:block text-gray-200 text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl leading-relaxed drop-shadow-lg"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2, duration: 0.8 }}
+            >
+              Discover the beauty and heritage of Kerala's backwaters, where tradition meets innovation
+            </motion.p>
+
+            <motion.div
+              className="mt-6 sm:mt-8"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 1.6, duration: 0.6 }}
+            >
+              <button className="px-6 sm:px-8 py-3 sm:py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white font-medium text-sm sm:text-base hover:bg-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                Explore Our Products
+              </button>
+            </motion.div>
+          </div>
         </motion.div>
-      </motion.div>
       
       {/* Decorative steam effect */}
       <motion.div 
