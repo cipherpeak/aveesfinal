@@ -6,6 +6,7 @@ import { map } from "framer-motion/client";
 import ProductFeatures from "./ProductFeatures";
 import ProductFaq from "./ProductFaq";
 import { motion } from "framer-motion";
+import ProductBanner from "./ProductBanner";
 
 // Categories
 const categories = ["All", "Rice Flours", "Instant Batters", "Ready-to-Cook", "Snacks"];
@@ -135,6 +136,8 @@ export default function ProductsPage() {
   }, []);
 
   return (
+    <>
+    <ProductBanner/>
     <div className="max-w-7xl mx-auto px-6 py-12 space-y-20">
       {/* PRODUCTS */}
       <motion.section
@@ -176,29 +179,38 @@ export default function ProductsPage() {
         />
       </motion.section>
 
-      {/* CTA */}
-      <motion.section
-        id="cta"
-        variants={sectionVariants}
-        initial="hidden"
-        animate={isVisible.cta ? "visible" : "exit"}
-        className="border rounded-2xl p-6 flex flex-col sm:flex-row justify-between items-center gap-4 bg-gray-50"
-      >
-        <div>
-          <h3 className="font-semibold text-lg">Interested in Retail or Distribution?</h3>
-          <p className="text-gray-600 text-sm">
-            Partner with us to bring clean-label, coconut-forward products to more customers.
-          </p>
-        </div>
-        <div className="flex gap-3">
-          <button className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700">
-            Enquire for Retail
-          </button>
-          <button className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700">
-            Enquire for Distribution
-          </button>
-        </div>
-      </motion.section>
+{/* CTA */}
+<motion.section
+  id="cta"
+  variants={sectionVariants}
+  initial="hidden"
+  animate={isVisible.cta ? "visible" : "exit"}
+  className="border border-red-100 rounded-2xl p-6 flex flex-col sm:flex-row justify-between items-center gap-4 bg-gray-50"
+>
+  <div>
+    <h3 className="font-semibold text-lg">Interested in Retail or Distribution?</h3>
+    <p className="text-gray-600 text-sm">
+      Partner with us to bring clean-label, coconut-forward products to more customers.
+    </p>
+  </div>
+  <div className="flex gap-3">
+    <motion.button 
+      whileHover={{ scale: 1.05 }}
+      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+      className="bg-red-600 text-white px-4 py-2 rounded-md shadow-md hover:shadow-lg transition-shadow duration-300"
+    >
+      Enquire for Retail
+    </motion.button>
+    <motion.button 
+      whileHover={{ scale: 1.05 }}
+      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+      className="bg-red-600 text-white px-4 py-2 rounded-md shadow-md hover:shadow-lg transition-shadow duration-300"
+    >
+      Enquire for Distribution
+    </motion.button>
+  </div>
+</motion.section>
     </div>
+    </>
   );
 }

@@ -1,10 +1,13 @@
+import { motion, useInView, useAnimation } from "framer-motion"
+import { useRef, useEffect } from "react"
+
 export default function EcosystemItems() {
   const ecosystemItems = [
     {
       title: "Puttu House Restaurant",
       description:
         "Where the flour meets the plate. Experience authentic Kerala cuisine made from our own products.",
-      image: "https://res.cloudinary.com/dkzvu1c4j/image/upload/v1756376062/DSC02099_nk5car.jpg", // <-- Add image for background
+      image: "https://res.cloudinary.com/dkzvu1c4j/image/upload/v1756376062/DSC02099_nk5car.jpg",
       ctaText: "Learn More",
       ctaColor: "text-white",
     },
@@ -26,10 +29,82 @@ export default function EcosystemItems() {
     },
   ]
 
+  // Refs and controls for animation
+  const sectionRef = useRef(null)
+  const isInView = useInView(sectionRef, { once: false, amount: 0.3 })
+  const controls = useAnimation()
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible")
+    } else {
+      controls.start("hidden")
+    }
+  }, [isInView, controls])
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { 
+      opacity: 0,
+      transition: {
+        when: "afterChildren",
+        staggerChildren: 0.1,
+        staggerDirection: -1
+      }
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+      transition: { 
+        duration: 0.5,
+        ease: "easeIn"
+      }
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.7, 
+        ease: "easeOut" 
+      }
+    }
+  }
+
+  const titleVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 20,
+      transition: { duration: 0.5, ease: "easeIn" }
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.7, ease: "easeOut" }
+    }
+  }
+
   return (
-    <div className="h-full bg-background py-16 px-4">
+    <motion.div 
+      ref={sectionRef}
+      initial="hidden"
+      animate={controls}
+      variants={containerVariants}
+      className="h-full bg-background py-16 px-4"
+    >
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <motion.div 
+          className="text-center mb-16"
+          variants={titleVariants}
+        >
           <h1 className="text-5xl font-bold text-primary mb-6">
             The Avees Ecosystem
           </h1>
@@ -37,17 +112,25 @@ export default function EcosystemItems() {
             More than just food products - we're building a complete Kerala
             experience.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <motion.div 
+          className="grid md:grid-cols-3 gap-8"
+          variants={containerVariants}
+        >
           {ecosystemItems.map((item, index) => (
-            <div
+            <motion.div
               key={index}
+              variants={itemVariants}
               className="relative rounded-xl overflow-hidden group h-80"
               style={{
                 backgroundImage: `url(${item.image})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
+              }}
+              whileHover={{ 
+                scale: 1.03,
+                transition: { duration: 0.3 }
               }}
             >
               {/* Dark overlay for readability */}
@@ -61,8 +144,9 @@ export default function EcosystemItems() {
                 <p className="text-white leading-relaxed">
                   {item.description}
                 </p>
-                <button
+                <motion.button
                   className={`inline-flex items-center gap-2 font-semibold ${item.ctaColor} hover:underline transition-all duration-200 group-hover:gap-3`}
+                  whileHover={{ x: 5 }}
                 >
                   {item.ctaText}
                   <svg
@@ -78,12 +162,12 @@ export default function EcosystemItems() {
                       d="M9 5l7 7-7 7"
                     />
                   </svg>
-                </button>
+                </motion.button>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   )
 }

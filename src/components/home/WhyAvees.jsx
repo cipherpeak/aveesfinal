@@ -1,16 +1,10 @@
 import { Building, Leaf, Sprout, Users, Zap } from "lucide-react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { GiCoconuts } from "react-icons/gi"
 
 const WhyAvees = () => {
-  const [scrollY, setScrollY] = useState(0)
   const [isVisible, setIsVisible] = useState({})
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY)
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  const sectionRef = useRef(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -22,16 +16,21 @@ const WhyAvees = () => {
           }))
         })
       },
-      { threshold: 0.1 },
+      { threshold: 0.1 }
     )
 
+    // Observe all elements with IDs
     document.querySelectorAll("[id]").forEach((el) => {
       observer.observe(el)
     })
 
+    // Also observe the main section
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
     return () => observer.disconnect()
   }, [])
-
 
   const features = [
     {
@@ -65,7 +64,7 @@ const WhyAvees = () => {
       delay: "0ms",
     },
     {
-      icon:<Building className="h-6 w-6 text-accent" />,
+      icon: <Building className="h-6 w-6 text-accent" />,
       title: "Traditional Processing",
       description: "Stone-ground using time-honored methods that preserve nutrition and flavor.",
       delay: "200ms",
@@ -79,14 +78,16 @@ const WhyAvees = () => {
   ]
 
   return (
-    <div className=" bg-white">
+    <div className="bg-white" ref={sectionRef}>
       {/* Hero Section - Why Avees */}
       <section className="flex items-center justify-center py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div
             id="hero-title"
             className={`text-center mb-20 transition-all duration-1000 ${
-              isVisible["hero-title"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              isVisible["hero-title"] 
+                ? "opacity-100 translate-x-0" 
+                : "opacity-0 -translate-x-20"
             }`}
           >
             <h1 className="text-6xl md:text-8xl font-bold text-gray-900 mb-6 text-balance">
@@ -104,13 +105,15 @@ const WhyAvees = () => {
                 key={index}
                 id={`feature-${index}`}
                 className={`group transition-all duration-700 ${
-                  isVisible[`feature-${index}`] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
+                  isVisible[`feature-${index}`] 
+                    ? "opacity-100 translate-x-0" 
+                    : "opacity-0 -translate-x-20"
                 }`}
                 style={{ transitionDelay: `${index * 200}ms` }}
               >
-                <div className="relative p-8 rounded-3xl bg-white  shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100">
+                <div className="relative p-8 rounded-3xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100">
                   <div
-                    className={`w-20 h-20 rounded-full bg-gradient-to-r  ${feature.color} border-red-600 text-red-600 border flex items-center justify-center text-3xl mb-6 mx-auto group-hover:scale-110 transition-transform duration-300`}
+                    className={`w-20 h-20 rounded-full bg-gradient-to-r ${feature.color} border-red-600 text-red-600 border flex items-center justify-center text-3xl mb-6 mx-auto group-hover:scale-110 transition-transform duration-300`}
                   >
                     {feature.icon}
                   </div>
@@ -124,17 +127,21 @@ const WhyAvees = () => {
       </section>
 
       {/* From Field to Fork Section */}
-      <section className=" py-20 px-4 bg-white">
+      <section className="py-20 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <div
                 id="field-title"
                 className={`transition-all duration-1000 ${
-                  isVisible["field-title"] ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
+                  isVisible["field-title"] 
+                    ? "opacity-100 translate-x-0" 
+                    : "opacity-0 -translate-x-20"
                 }`}
               >
-                <h2 className="text-5xl md:text-6xl font-bold text-red-600 mb-8 text-balance"> <span className="text-black">From</span> Field to Fork</h2>
+                <h2 className="text-5xl md:text-6xl font-bold text-red-600 mb-8 text-balance">
+                  <span className="text-black">From</span> Field to Fork
+                </h2>
                 <p className="text-xl text-gray-600 mb-12 leading-relaxed text-pretty">
                   Every grain tells a story. From the fertile lands of Kuttanad, below sea level, to your kitchen table
                   - we bring you the authentic taste of Kerala with uncompromising quality and tradition.
@@ -149,7 +156,9 @@ const WhyAvees = () => {
                     <div
                       id={`process-${index}`}
                       className={`flex items-start gap-6 transition-all duration-700 ${
-                        isVisible[`process-${index}`] ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
+                        isVisible[`process-${index}`] 
+                          ? "opacity-100 translate-x-0" 
+                          : "opacity-0 -translate-x-20"
                       }`}
                       style={{ transitionDelay: process.delay }}
                     >
@@ -168,9 +177,11 @@ const WhyAvees = () => {
 
             <div
               id="field-image"
-              className="transition-all duration-1000 
-                opacity-100 translate-x-0" 
-           
+              className={`transition-all duration-1000 ${
+                isVisible["field-image"] 
+                  ? "opacity-100 translate-x-0" 
+                  : "opacity-0 -translate-x-20"
+              }`}
             >
               <div className="relative rounded-3xl overflow-hidden shadow-2xl group">
                 <img

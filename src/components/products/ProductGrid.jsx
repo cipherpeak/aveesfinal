@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-// Animation variants for the container
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -64,38 +63,43 @@ function ProductGrid({ categories, activeCategory, filteredProducts, setActiveCa
       {/* Products Grid with Framer Motion animations */}
       <motion.div
         className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
       >
-        {filteredProducts.map((product) => (
-          <motion.div
-            key={product.id}
-            className="border rounded-2xl shadow-sm p-4 hover:shadow-md transition"
-            variants={cardVariants}
-            whileHover={{ 
-              y: -5, 
-              transition: { duration: 0.2 } 
-            }}
-          >
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-60 object-cover rounded-lg"
-            />
-            <h3 className="text-lg font-semibold mt-4">{product.name}</h3>
-            <p className="text-gray-600 text-sm mt-1">{product.description}</p>
+          {filteredProducts.map((product) => (
+            <motion.div
+              key={product.id}
+              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+              variants={cardVariants}
+              whileHover={{ 
+                y: -5,
+                transition: { duration: 0.2 } 
+              }}
+            >
+              <div className="relative h-48 overflow-hidden">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute top-3 left-3 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded">
+                  {product.category}
+                </div>
+              </div>
+              
+              <div className="p-5">
+                <h3 className="text-xl font-bold text-gray-800 mb-2">{product.name}</h3>
+                <p className="text-gray-600 text-sm mb-4">{product.description}</p>
 
-            <div className="flex items-center justify-between mt-4">
-              <span className="text-xs bg-gray-100 px-2 py-1 rounded-md">
-                {product.category}
-              </span>
-              <button className="bg-red-600 text-white text-sm px-3 py-2 rounded-md hover:bg-red-700">
-                Where to Buy
-              </button>
-            </div>
-          </motion.div>
-        ))}
+                <div className="border-t border-gray-100 pt-4">
+                  <button className="w-full bg-red-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-300">
+                    Where to Buy
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          ))}
       </motion.div>
     </section>
   );

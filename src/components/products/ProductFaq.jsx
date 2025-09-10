@@ -1,43 +1,71 @@
-import React from 'react'
+import React from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const ProductFaq = ({isVisible, faqs, ChevronDown, openFAQ,setOpenFAQ}) => {
+const ProductFaq = ({ isVisible, faqs, ChevronDown, openFAQ, setOpenFAQ }) => {
   return (
-          <section id="faq">
-        <div
-          id="faq-title"
-          className="transition-all duration-1000 mb-6 opacity-100 translate-y-0"
+    <section id="faq">
+      <div
+        id="faq-title"
+        className="transition-all duration-1000 mb-6 opacity-100 translate-y-0"
+      >
+        <h2 className="text-2xl font-bold">Frequently Asked Questions</h2>
+      </div>
 
-        >
-          <h2 className="text-2xl font-bold">Frequently Asked Questions</h2>
-        </div>
-
-        <div className="divide-y">
-          {faqs.map((faq, idx) => (
-            <div
-              key={idx}
-              id={`faq-${idx}`}
-              className="py-4 transition-all duration-700 opacity-100 translate-y-0"
-              style={{ transitionDelay: `${idx * 200}ms` }}
+      <div className="divide-y">
+        {faqs.map((faq, idx) => (
+          <motion.div
+            key={idx}
+            id={`faq-${idx}`}
+            className="py-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: idx * 0.1 }}
+          >
+            <motion.button
+              onClick={() => setOpenFAQ(openFAQ === idx ? null : idx)}
+              className="flex justify-between w-full text-left text-gray-800 font-medium"
+              whileTap={{ scale: 0.99 }}
             >
-              <button
-                onClick={() => setOpenFAQ(openFAQ === idx ? null : idx)}
-                className="flex justify-between w-full text-left text-gray-800 font-medium"
+              {faq.question}
+              <motion.div
+                animate={{ rotate: openFAQ === idx ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
               >
-                {faq.question}
-                <ChevronDown
-                  className={`w-5 h-5 transform transition ${
-                    openFAQ === idx ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
+                <ChevronDown className="w-5 h-5" />
+              </motion.div>
+            </motion.button>
+            
+            <AnimatePresence>
               {openFAQ === idx && (
-                <p className="mt-2 text-gray-600 text-sm">{faq.answer}</p>
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ 
+                    height: "auto", 
+                    opacity: 1,
+                    transition: {
+                      height: { duration: 0.3 },
+                      opacity: { duration: 0.4, delay: 0.1 }
+                    }
+                  }}
+                  exit={{ 
+                    height: 0, 
+                    opacity: 0,
+                    transition: {
+                      height: { duration: 0.3 },
+                      opacity: { duration: 0.2 }
+                    }
+                  }}
+                  className="overflow-hidden"
+                >
+                  <p className="mt-2 text-gray-600 text-sm">{faq.answer}</p>
+                </motion.div>
               )}
-            </div>
-          ))}
-        </div>
-      </section>
-  )
-}
+            </AnimatePresence>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+};
 
-export default ProductFaq
+export default ProductFaq;
