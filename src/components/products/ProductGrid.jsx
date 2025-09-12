@@ -34,7 +34,7 @@ function ProductGrid({ categories, activeCategory, filteredProducts, setActiveCa
         id="products-title"
         className="transition-all duration-1000 text-center mb-10 opacity-100 translate-y-0"
       >
-        <h2 className="text-3xl font-bold mb-2">Our Products</h2>
+        <h2 className="text-6xl font-bold mb-2">Our Products</h2>
         <p className="text-gray-600">
           Explore our coconut-forward, clean-label range—from authentic rice flours and instant
           batters to ready-to-cook staples and snacks.

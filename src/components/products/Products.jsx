@@ -82,7 +82,6 @@ export default function ProductsPage() {
       ? products
       : products.filter((p) => p.category === activeCategory);
 
-  // Animation variants for fade-in-up entrance only (no exit animation)
   const sectionVariants = {
     hidden: { 
       opacity: 0, 
@@ -98,7 +97,6 @@ export default function ProductsPage() {
     }
   };
 
-  // Use a single Intersection Observer for all sections
   useEffect(() => {
     const observerOptions = {
       root: null,

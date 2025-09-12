@@ -145,7 +145,7 @@ export default function EcosystemItems() {
                   {item.description}
                 </p>
                 <motion.button
-                  className={`inline-flex items-center gap-2 font-semibold ${item.ctaColor} hover:underline transition-all duration-200 group-hover:gap-3`}
+                  className={`inline-flex items-center gap-2 bg-red-600  text-white font-medium py-2 px-4 rounded-md transition-colors duration-300 ${item.ctaColor} transition-all duration-200 group-hover:gap-3`}
                   whileHover={{ x: 5 }}
                 >
                   {item.ctaText}

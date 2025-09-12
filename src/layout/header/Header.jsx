@@ -134,7 +134,7 @@ function Header() {
   return (
     <header className="bg-white w-full sticky top-0 z-50 shadow-sm">
       {/* Top Bar */}
-      <div className="flex items-center justify-between max-w-7xl mx-auto px-4 py-3">
+      <div className="flex items-center justify-between max-w-7xl mx-auto px-4 py-8">
         {/* Logo */}
         <div className="flex items-center">
           <img
@@ -144,35 +144,7 @@ function Header() {
           />
         </div>
 
-        {/* Search Bar - Hidden on mobile */}
-        <div className="flex-1 hidden md:flex justify-center">
-          <PlaceholdersAndVanishInputDemo />
-        </div>
-
-        {/* Right side icons - Mobile menu and shopping cart */}
-        <div className="flex items-center gap-4">
-          <a 
-            href="https://www.amazon.in/stores/ArayacherrilVarkeySonsPrivateLimited/page/845DC96C-907A-4AD1-AC9D-AA2AF5129460?is_byline_deeplink=true&deeplink=CB166B1D-3A54-48AA-B41E-03CBD177798D&redirect_store_id=845DC96C-907A-4AD1-AC9D-AA2AF5129460&lp_asin=B09R7WRRT2&ref_=ast_bln&store_ref=bl_ast_dp_brandLogo_sto" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 bg-red-100 text-red-600 px-4 py-2.5 rounded-full text-sm font-medium transition"
-          >
-            <GiShoppingBag className="text-red-500 text-xl" />
-            <span className="hidden sm:inline">Order Now</span>
-          </a>
-          
-          {/* Mobile Menu Button - Now on the right side */}
-          <button 
-            className="md:hidden text-gray-700"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle mobile menu"
-          >
-            {mobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Desktop Navigation */}
+         <div className="flex-1 hidden md:flex justify-center">
       <div className="hidden md:block relative">
         <nav className="w-full">
           <ul className="flex justify-center gap-8 py-3 text-gray-700 font-medium relative">
@@ -248,7 +220,32 @@ function Header() {
             ))}
           </ul>
         </nav>
+      </div>        </div> 
+        {/* Right side icons - Mobile menu and shopping cart */}
+        <div className="flex items-center gap-4">
+          <a 
+            href="https://www.amazon.in/stores/ArayacherrilVarkeySonsPrivateLimited/page/845DC96C-907A-4AD1-AC9D-AA2AF5129460?is_byline_deeplink=true&deeplink=CB166B1D-3A54-48AA-B41E-03CBD177798D&redirect_store_id=845DC96C-907A-4AD1-AC9D-AA2AF5129460&lp_asin=B09R7WRRT2&ref_=ast_bln&store_ref=bl_ast_dp_brandLogo_sto" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 bg-red-100 text-red-600 px-4 py-2.5 rounded-full text-sm font-medium transition"
+          >
+            <GiShoppingBag className="text-red-500 text-xl" />
+            <span className="hidden sm:inline">Order Now</span>
+          </a>
+          
+          {/* Mobile Menu Button - Now on the right side */}
+          <button 
+            className="md:hidden text-gray-700"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle mobile menu"
+          >
+            {mobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          </button>
+        </div>
       </div>
+
+      {/* Desktop Navigation */}
+
 
       {/* Mobile Navigation */}
       <AnimatePresence>

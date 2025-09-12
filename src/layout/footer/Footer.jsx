@@ -168,7 +168,7 @@ function Footer() {
           {/* Bottom Section */}
           <div className="border-t border-gray-300 mt-8 pt-6">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <div className="text-black text-sm">© 2025 Avees Foods. All rights reserved.</div>
+              <div className="text-black text-sm">© 2025 Avees. Powered by <a href="https://cipherpeakpvtltd.com/" className="">CipherPeak Pvt Ltd.</a> </div>
               <div className="text-black text-sm">
                 <Link to="/privacy" className="hover:text-red-600 mr-4">Privacy Policy</Link>
                 <Link to="/terms" className="hover:text-red-600">Terms of Service</Link>
@@ -178,7 +178,7 @@ function Footer() {
         </div>
       </footer>
       
-      <FloatingWhatsApp 
+      <FloatingWhatsApp
         phoneNumber="+917907224281"
         accountName="Avees Foods"
         statusMessage="Typically replies within 1 hour"
