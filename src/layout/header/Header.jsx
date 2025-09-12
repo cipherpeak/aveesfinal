@@ -39,13 +39,28 @@ function Header() {
           image: "https://res.cloudinary.com/dkzvu1c4j/image/upload/v1754295582/resort_eibvny.webp",
           description: "Explore our resorts"
         },
+        { 
+          name: "Avees Agriculture", 
+          link: "/avees-agriculture", 
+          image: "https://res.cloudinary.com/dkzvu1c4j/image/upload/v1754294715/image4_hkhrwo.png",
+          description: "Explore our agriculture"
+        },
       ],
     },
     {
       name: "Opportunities",
+      link: "/opportunities",
+
     },
     {
       name: "Gallery",
+      link: "/gallery",
+
+    },
+    {
+      name: "Contact",
+      link: "/contact",
+
     },
   ];
 
@@ -197,7 +212,7 @@ function Header() {
                         variants={dropdownVariants}
                       >
                         <div className="max-w-7xl mx-auto px-4 py-6">
-                          <div className="grid grid-cols-2 gap-8">
+                          <div className="grid grid-cols-3 gap-8">
                             {item.dropdown.map((subItem, subIndex) => (
                               <motion.a
                                 key={subIndex}

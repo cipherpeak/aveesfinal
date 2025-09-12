@@ -27,14 +27,16 @@ export const Timeline = ({ data }) => {
       className="w-full bg-white py-4 md:py-8 px-2 md:px-10"
       ref={containerRef}
     >
-      <div className="max-w-7xl mx-auto py-4 md:py-6 px-2 md:px-8 lg:px-10">
-        <h2 className="text-2xl md:text-4xl mb-2 md:mb-4 text-black max-w-4xl font-bold">
+      {/* Centered heading and description */}
+      <div className="max-w-7xl mx-auto py-4 md:py-6 px-2 md:px-8 lg:px-10 text-center">
+        <h2 className="text-2xl md:text-4xl mb-2 md:mb-4 text-black font-bold mx-auto">
           Our Journey Through Time
         </h2>
-        <p className="text-neutral-700 text-sm md:text-base max-w-sm">
+        <p className="text-neutral-700 text-sm md:text-base max-w-lg mx-auto">
           A timeline of our growth and milestones over the years.
         </p>
       </div>
+      
       <div ref={ref} className="relative max-w-7xl mx-auto pb-10 md:pb-20">
         {data.map((item, index) => (
           <div key={index} className="flex justify-start pt-6 md:pt-40">

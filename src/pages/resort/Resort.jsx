@@ -55,7 +55,7 @@ const Resort = () => {
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section  
-        className="relative h-screen flex items-center justify-center bg-cover bg-center m-2 md:m-5 bg-no-repeat rounded-3xl overflow-hidden"
+        className="relative h-[28rem] sm:h-[36rem] md:h-[33rem] lg:h-[50rem] flex items-center justify-center bg-cover bg-center m-2 md:m-5 bg-no-repeat rounded-3xl overflow-hidden"
         style={{ backgroundImage: `url(https://res.cloudinary.com/dkzvu1c4j/image/upload/v1754295582/resort_eibvny.webp)` }}
       >
         <div className="absolute inset-0 bg-black/40"></div>

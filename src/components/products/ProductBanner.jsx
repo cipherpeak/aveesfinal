@@ -6,24 +6,28 @@ function ProductBanner() {
   const mobileImage = "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"; // Example mobile image
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden md:m-5 m-2">
-      {/* Desktop Background Image */}
-      <div 
-        className="hidden md:block absolute inset-0 w-full lg:h-[50rem] h-[28rem] bg-cover bg-center bg-no-repeat rounded-3xl"
-        style={{ backgroundImage: `url(${desktopImage})` }}
-      >
-        <div className="absolute inset-0 bg-gradient-hero opacity-75"></div>
-      </div>
-      
-      {/* Mobile Background Image */}
-      <div 
-        className="md:hidden absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat rounded-3xl"
-        style={{ backgroundImage: `url(${mobileImage})` }}
-      >
-        <div className="absolute inset-0 bg-gradient-hero opacity-75"></div>
-      </div>
-      
-    </section>
+<section className="relative h-[28rem] sm:h-[36rem] md:h-[33rem] lg:h-[50rem] flex items-center justify-center overflow-hidden md:m-5 m-2">
+  {/* Desktop Image */}
+  <img
+    src={desktopImage}
+    alt="Product Banner"
+    className="hidden md:block w-full h-full lg:object-cover md:object-contain rounded-3xl"
+  />
+
+  {/* Mobile Image */}
+  <img
+    src={mobileImage}
+    alt="Product Banner"
+    className="md:hidden w-full h-full object-cover rounded-3xl"
+  />
+
+  {/* Optional overlay */}
+  <div className="absolute inset-0 bg-gradient-hero opacity-75 rounded-3xl"></div>
+</section>
+
+
+
+
   );
 }
 

@@ -134,7 +134,7 @@ export default function ProductsPage() {
   return (
     <>
       <ProductBanner/>
-      <div className="max-w-7xl mx-auto px-4 space-y-20">
+      <div className="max-w-7xl mx-auto py-16 px-4 space-y-20">
         {/* PRODUCTS */}
         <motion.section
           id="products"
